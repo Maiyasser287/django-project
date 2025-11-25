@@ -152,9 +152,10 @@
                 <td>{{ p.owner.username }}</td>
                 <td>
                     <a href="{% url 'show_project' p.id %}">Show Details</a>
-                    <a href="{% url 'edit_project' p.id %}">Edit</a>
-                    <a href="{% url 'delete_project' p.id %}">Delete</a>
-                </td>
+                   {% if p.owner == request.user %}
+                        <a href="{% url 'edit_project' p.id %}">Edit</a>
+                        <a href="{% url 'delete_project' p.id %}">Delete</a>
+                    {% endif %}
 
             </tr>
             {% empty %}
